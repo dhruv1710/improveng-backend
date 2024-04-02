@@ -3,10 +3,11 @@ import base64
 import uvicorn
 import io
 import requests
+import constants
 from fastapi.middleware.cors import CORSMiddleware
 import boto3
-boto3.setup_default_session(region_name='ap-south-1',aws_access_key_id='AKIAVJMOT2XBVTZA6SNN',
-    aws_secret_access_key='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')
+boto3.setup_default_session(region_name='ap-south-1',aws_access_key_id=constants.AK,
+    aws_secret_access_key=constants.SAK)
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -48,7 +49,7 @@ def grammar_corrections(text: str):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "Bearer RX92sajEHPI95UryWjQdFNVeQ343CY1Q"
+        "Authorization": f"Bearer {constants.Api_key}"
     }
 
     response = requests.post(url,json=payload, headers=headers)
