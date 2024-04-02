@@ -39,6 +39,3 @@ async def extract_text(file: UploadFile = File(...)):
         if k['BlockType'] == 'WORD':
             textList.append(k['Text'])
     return {'text':textList}
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", port=5000,reload=True,log_level=0)
